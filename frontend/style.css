@@ -8,7 +8,7 @@ body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f5f5f5;
 }
 
 .container {
@@ -20,9 +20,10 @@ body {
 
 header {
     background-color: #333;
-    color: #fff;
+    color: white;
+    padding: 15px;
     text-align: center;
-    padding: 1rem;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
@@ -33,40 +34,98 @@ header {
 
 .sidebar {
     flex: 1;
-    background: #fff;
+    background-color: white;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .video-area {
     flex: 3;
-    background: #fff;
+    background-color: white;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 #videoPlayer {
     width: 100%;
-    margin: 15px 0;
+    margin-bottom: 20px;
 }
 
 .video-list {
-    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.video-controls {
+    margin-bottom: 15px;
+}
+
+.video-filter {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.filter-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.filter-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-option input {
+    margin-right: 8px;
+}
+
+.video-count {
+    font-size: 0.9em;
+    color: #666;
+    text-align: center;
+    padding: 5px;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+}
+
+.video-item-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .video-item {
+    width: 100%;
     padding: 10px;
-    margin-bottom: 5px;
-    background: #f9f9f9;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    text-align: left;
+    font-family: inherit;
 }
 
 .video-item:hover {
-    background: #eaeaea;
+    background-color: #e9e9e9;
 }
 
 .video-item.active {
@@ -74,32 +133,48 @@ header {
     border-left: 4px solid #198754;
 }
 
+.video-item.not-annotated {
+    border-left: 4px solid #dc3545;
+}
+
+.video-item.not-annotated .annotation-count {
+    background-color: #dc3545;
+}
+
+.annotation-count {
+    background-color: #333;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.8em;
+}
+
 .annotation-controls {
-    margin: 20px 0;
+    margin-bottom: 20px;
     padding: 15px;
-    background: #f9f9f9;
+    background-color: #f9f9f9;
     border-radius: 5px;
 }
 
 .input-group {
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .input-group label {
-    display: block;
     margin-bottom: 5px;
 }
 
 .input-group input {
-    width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
 }
 
 button {
-    padding: 8px 16px;
-    background: #333;
+    padding: 10px 15px;
+    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 4px;
@@ -107,7 +182,7 @@ button {
 }
 
 button:hover {
-    background: #555;
+    background-color: #45a049;
 }
 
 .annotation-list {
@@ -115,24 +190,108 @@ button:hover {
 }
 
 .annotation-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px;
-    margin-bottom: 5px;
-    background: #f1f1f1;
+    background-color: #f9f9f9;
     border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
+    margin-bottom: 10px;
 }
 
 .annotation-item:hover {
     background: #e2e2e2;
 }
 
+.annotation-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.inline-form {
+    display: inline;
+}
+
+.jump-btn {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    background-color: #007bff;
+}
+
+.jump-btn:hover {
+    background-color: #0069d9;
+}
+
+.delete-btn {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    background-color: #dc3545;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
 h2, h3 {
     margin-bottom: 15px;
 }
 
-#videoList div {
-    cursor: pointer;
-    padding: 5px;
-    border: 1px solid #ddd;
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.no-video-message {
+    text-align: center;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.no-videos {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+}
+
+.jump-notification {
+    background-color: #cce5ff;
+    color: #004085;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #b8daff;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .sidebar, .video-area {
+        width: 100%;
+    }
+    
+    .video-list {
+        max-height: 300px;
+    }
 }

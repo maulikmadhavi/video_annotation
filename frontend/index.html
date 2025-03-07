@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Annotation Tool</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
@@ -12,36 +12,152 @@
             <h1>Video Annotation Tool</h1>
         </header>
         
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash-message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
         <div class="main-content">
             <div class="sidebar">
                 <h2>Available Videos</h2>
-                <div id="videoList" class="video-list"></div>
+                <div class="video-controls">
+                    <div class="video-filter">
+                        <form action="{{ url_for('filter_videos') }}" method="post" class="filter-form">
+                            {% if current_video %}
+                            <input type="hidden" name="video" value="{{ current_video.encoded_path }}">
+                            {% endif %}
+                            <div class="filter-title">Filter Videos:</div>
+                            <div class="filter-options">
+                                <label class="filter-option">
+                                    <input type="radio" name="filter" value="all" {% if filter_mode == 'all' %}checked{% endif %} onchange="this.form.submit()">
+                                    <span>All ({{ total_videos }})</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="filter" value="annotated" {% if filter_mode == 'annotated' %}checked{% endif %} onchange="this.form.submit()">
+                                    <span>Annotated Only</span>
+                                </label>
+                                <label class="filter-option">
+                                    <input type="radio" name="filter" value="not_annotated" {% if filter_mode == 'not_annotated' %}checked{% endif %} onchange="this.form.submit()">
+                                    <span>Not Annotated</span>
+                                </label>
+                            </div>
+                        </form>
+                        <div class="video-count">
+                            Showing {{ displayed_videos }} of {{ total_videos }} videos
+                        </div>
+                    </div>
+                </div>
+                <div id="videoList" class="video-list">
+                    {% if videos %}
+                        {% for video in videos %}
+                            <form action="{{ url_for('select_video') }}" method="post" class="video-item-form">
+                                <input type="hidden" name="video_path" value="{{ video.path }}">
+                                <input type="hidden" name="filter_mode" value="{{ filter_mode }}">
+                                <button type="submit" class="video-item {% if current_video and current_video.path == video.path %}active{% endif %} {% if not video.is_annotated %}not-annotated{% endif %}">
+                                    <span class="video-name">{{ video.name }}</span>
+                                    <span class="annotation-count">{{ video.annotation_count }} annotations</span>
+                                </button>
+                            </form>
+                        {% endfor %}
+                    {% else %}
+                        <p class="no-videos">No videos found matching your filter criteria.</p>
+                    {% endif %}
+                </div>
             </div>
             
             <div id="videoArea" class="video-area">
-                <h2 id="currentVideoTitle">Select a video</h2>
-                <video id="videoPlayer" controls></video>
+                <h2 id="currentVideoTitle">
+                    {% if current_video %}
+                        {{ current_video.name }}
+                    {% else %}
+                        Select a video
+                    {% endif %}
+                </h2>
                 
-                <div class="annotation-controls">
-                    <h3>Add New Annotation</h3>
-                    <div class="input-group">
-                        <label for="startTime">Start Time (seconds):</label>
-                        <input type="number" id="startTime" step="0.1" min="0">
+                {% if current_video %}
+                    <video id="videoPlayer" controls>
+                        <source src="/videos/{{ current_video.path.split('/videos/')[-1] }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    
+                    <!-- Jump to time if specified in URL -->
+                    {% if request.args.get('jump_to') %}
+                        <div class="jump-notification">
+                            Jumping to {{ request.args.get('jump_to') }}s
+                        </div>
+                        <script>
+                            // This minimal script just handles jumping to timestamps
+                            window.onload = function() {
+                                var video = document.getElementById('videoPlayer');
+                                var jumpTime = {{ request.args.get('jump_to', 0) }};
+                                if (video && jumpTime > 0) {
+                                    video.currentTime = jumpTime;
+                                    video.play();
+                                }
+                            }
+                        </script>
+                    {% endif %}
+                    
+                    <div class="annotation-controls">
+                        <h3>Add New Annotation</h3>
+                        <form action="{{ url_for('add_annotation') }}" method="post" class="annotation-form">
+                            <input type="hidden" name="video_path" value="{{ current_video.path }}">
+                            <input type="hidden" name="encoded_path" value="{{ current_video.encoded_path }}">
+                            
+                            <div class="input-group">
+                                <label for="startTime">Start Time (seconds):</label>
+                                <input type="number" id="startTime" name="start_time" step="0.1" min="0" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="endTime">End Time (seconds):</label>
+                                <input type="number" id="endTime" name="end_time" step="0.1" min="0" required>
+                            </div>
+                            
+                            <button type="submit" id="addAnnotation">Add Annotation</button>
+                        </form>
                     </div>
-                    <div class="input-group">
-                        <label for="endTime">End Time (seconds):</label>
-                        <input type="number" id="endTime" step="0.1" min="0">
+                    
+                    <div class="annotation-list">
+                        <h3>Annotations:</h3>
+                        <div id="annotationDisplay">
+                            {% if annotations %}
+                                {% for annotation in annotations %}
+                                    <div class="annotation-item">
+                                        <span>Segment {{ loop.index }}: {{ annotation.start_time }}s - {{ annotation.end_time }}s</span>
+                                        <div class="annotation-actions">
+                                            <form action="{{ url_for('jump_to_annotation') }}" method="post" class="inline-form">
+                                                <input type="hidden" name="video_path" value="{{ current_video.path }}">
+                                                <input type="hidden" name="start_time" value="{{ annotation.start_time }}">
+                                                <input type="hidden" name="encoded_path" value="{{ current_video.encoded_path }}">
+                                                <button type="submit" class="jump-btn">Jump</button>
+                                            </form>
+                                            <form action="{{ url_for('delete_annotation') }}" method="post" class="inline-form">
+                                                <input type="hidden" name="video_path" value="{{ current_video.path }}">
+                                                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                                                <input type="hidden" name="encoded_path" value="{{ current_video.encoded_path }}">
+                                                <button type="submit" class="delete-btn">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>No annotations for this video</p>
+                            {% endif %}
+                        </div>
                     </div>
-                    <button id="addAnnotation">Add Annotation</button>
-                </div>
-                
-                <div class="annotation-list">
-                    <h3>Annotations:</h3>
-                    <div id="annotationDisplay"></div>
-                </div>
+                {% else %}
+                    <div class="no-video-message">
+                        <p>Please select a video from the left panel to start annotating.</p>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>
