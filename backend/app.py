@@ -17,6 +17,12 @@ DATA_FILE = os.path.join(os.path.dirname(__file__), "data", "annotation.json")
 VIDEOS_DIR = os.path.join(os.path.dirname(__file__), "..", "videos")
 
 
+def normalize_path(path):
+    """Normalize a file path to avoid duplicates with different path formats"""
+    # Use realpath to resolve any symbolic links and normalize path
+    return os.path.normpath(os.path.abspath(os.path.realpath(path)))
+
+
 def load_annotations():
     """Load annotations from JSON file"""
     try:
@@ -50,25 +56,130 @@ def get_all_videos():
     try:
         for file in os.listdir(VIDEOS_DIR):
             if file.lower().endswith((".mp4", ".avi", ".mov", ".mkv")):
+                # Use join + normalization to ensure consistent paths
                 video_path = os.path.join(VIDEOS_DIR, file)
-                all_videos.append(video_path)
+                normalized_path = normalize_path(video_path)
+                all_videos.append(normalized_path)
+                print(f"Found video: {normalized_path}")
     except Exception as e:
         print(f"Error listing videos: {e}")
 
     return all_videos
 
 
+def cleanup_annotation_data():
+    """Cleanup annotation data by normalizing paths and merging duplicate entries"""
+    annotation_data = load_annotations()
+    if not annotation_data:
+        return False
+
+    # Create a new dict with normalized paths
+    new_data = {}
+    merged_paths = {}
+
+    for path, annotations in annotation_data.items():
+        norm_path = normalize_path(path)
+
+        # Keep track of path normalization for reporting
+        if norm_path not in merged_paths:
+            merged_paths[norm_path] = []
+        if path != norm_path:
+            merged_paths[norm_path].append(path)
+
+        # Add annotations to the normalized path
+        if norm_path not in new_data:
+            new_data[norm_path] = []
+
+        # Merge annotations without duplicates
+        for annotation in annotations:
+            if (
+                annotation not in new_data[norm_path]
+            ):  # This works because dicts are comparable
+                new_data[norm_path].append(annotation)
+
+    # Only save if there were changes
+    if new_data != annotation_data:
+        result = save_annotations(new_data)
+        return result, merged_paths
+    return True, {}
+
+
+@app.route("/cleanup_annotations", methods=["POST"])
+def cleanup_annotations():
+    """Handle annotation data cleanup"""
+    success, merged_paths = cleanup_annotation_data()
+
+    if success:
+        if merged_paths:
+            # Report what was merged
+            message = "Annotation data cleaned up. Merged paths:"
+            for norm_path, old_paths in merged_paths.items():
+                if old_paths:  # Only show paths that were actually merged
+                    video_name = os.path.basename(norm_path)
+                    message += (
+                        f"<br>• {video_name}: merged {len(old_paths)} duplicate paths"
+                    )
+            flash(message, "success")
+        else:
+            flash("Annotation data checked. No issues found.", "success")
+    else:
+        flash("Failed to clean up annotation data", "error")
+
+    # Redirect to the same page
+    return redirect(url_for("index"))
+
+
 @app.route("/")
 def index():
     """Render the main page with all available videos"""
     annotation_data = load_annotations()
-    all_video_paths = get_all_videos()
+
+    # Debug output to check paths
+    print("\nLoaded annotation paths:")
+    for path in annotation_data:
+        print(f"  Original: {path}")
+        print(f"  Normalized: {normalize_path(path)}")
+
+    # Convert paths to normalized format
+    norm_annotation_data = {}
+    for path, annotations in annotation_data.items():
+        norm_path = normalize_path(path)
+        if norm_path not in norm_annotation_data:
+            norm_annotation_data[norm_path] = []
+        # Use extend instead of append to avoid nested lists
+        for annotation in annotations:
+            if annotation not in norm_annotation_data[norm_path]:
+                norm_annotation_data[norm_path].append(annotation)
+
+    all_video_paths = get_all_videos()  # These are already normalized
+
+    # Debug output to compare paths
+    print("\nComparing paths:")
+    for video_path in all_video_paths:
+        print(f"Video path: {video_path}")
+        print(f"Has annotations: {video_path in norm_annotation_data}")
+
     videos = []
     filter_mode = request.args.get("filter", "all")  # Default to showing all videos
 
+    # Track paths that appear in annotations but not in video directory
+    missing_videos = []
+    for video_path in norm_annotation_data:
+        if video_path not in all_video_paths:
+            video_basename = os.path.basename(video_path)
+            all_basenames = [os.path.basename(p) for p in all_video_paths]
+            if video_basename not in all_basenames:
+                missing_videos.append(video_path)
+            else:
+                # If basename matches but full path doesn't, this is likely
+                # a path normalization issue
+                print(
+                    f"Path mismatch for {video_basename} - in annotations but not exact match in videos dir"
+                )
+
     # Process all videos and their annotation status
     for video_path in all_video_paths:
-        annotations = annotation_data.get(video_path, [])
+        annotations = norm_annotation_data.get(video_path, [])
         is_annotated = len(annotations) > 0
 
         # Apply filtering
@@ -90,6 +201,10 @@ def index():
     # Sort videos: annotated videos first, then by name
     videos.sort(key=lambda x: (not x["is_annotated"], x["name"].lower()))
 
+    # Calculate some stats for display
+    total_annotations = sum(len(anns) for anns in norm_annotation_data.values())
+    annotation_issues = len(annotation_data) != len(norm_annotation_data)
+
     # Get the currently selected video, if any
     selected_video = request.args.get("video")
     current_video = None
@@ -98,14 +213,16 @@ def index():
     if selected_video:
         # Decode the selected video path
         try:
-            video_path = base64.b64decode(selected_video).decode("utf-8")
+            video_path = normalize_path(
+                base64.b64decode(selected_video).decode("utf-8")
+            )
             if os.path.exists(video_path):
                 current_video = {
                     "path": video_path,
                     "name": os.path.basename(video_path),
                     "encoded_path": selected_video,
                 }
-                annotations = annotation_data.get(video_path, [])
+                annotations = norm_annotation_data.get(video_path, [])
         except:
             pass
 
@@ -117,6 +234,9 @@ def index():
         filter_mode=filter_mode,
         total_videos=len(all_video_paths),
         displayed_videos=len(videos),
+        total_annotations=total_annotations,
+        annotation_issues=annotation_issues,
+        missing_videos=missing_videos,
     )
 
 
@@ -139,8 +259,10 @@ def select_video():
     filter_mode = request.form.get("filter_mode", "all")
 
     if video_path:
+        # Normalize path before encoding
+        norm_path = normalize_path(video_path)
         # Encode the path to make it URL-safe
-        encoded_path = base64.b64encode(video_path.encode()).decode()
+        encoded_path = base64.b64encode(norm_path.encode()).decode()
         return redirect(url_for("index", video=encoded_path, filter=filter_mode))
     return redirect(url_for("index", filter=filter_mode))
 
@@ -167,6 +289,9 @@ def add_annotation():
     if start_time >= end_time:
         flash("End time must be greater than start time", "error")
         return redirect(url_for("index", video=encoded_path))
+
+    # Normalize path before using it
+    video_path = normalize_path(video_path)
 
     annotation_data = load_annotations()
 
@@ -216,6 +341,9 @@ def delete_annotation():
     except ValueError:
         flash("Invalid annotation index", "error")
         return redirect(url_for("index", video=encoded_path))
+
+    # Normalize path before using it
+    video_path = normalize_path(video_path)
 
     annotation_data = load_annotations()
 

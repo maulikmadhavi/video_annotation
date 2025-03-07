@@ -16,7 +16,7 @@
             {% if messages %}
                 <div class="flash-messages">
                     {% for category, message in messages %}
-                        <div class="flash-message {{ category }}">{{ message }}</div>
+                        <div class="flash-message {{ category }}">{{ message|safe }}</div>
                     {% endfor %}
                 </div>
             {% endif %}
@@ -50,6 +50,28 @@
                         <div class="video-count">
                             Showing {{ displayed_videos }} of {{ total_videos }} videos
                         </div>
+                        <div class="annotation-stats">
+                            Total annotations: {{ total_annotations }}
+                        </div>
+                        
+                        {% if annotation_issues %}
+                        <div class="annotation-warning">
+                            <div class="warning-text">
+                                ⚠️ Duplicate path issues detected in annotation data
+                            </div>
+                            <form action="{{ url_for('cleanup_annotations') }}" method="post">
+                                <button type="submit" class="cleanup-btn">Fix Path Issues</button>
+                            </form>
+                        </div>
+                        {% endif %}
+                        
+                        {% if missing_videos and missing_videos|length > 0 %}
+                        <div class="annotation-warning">
+                            <div class="warning-text">
+                                ⚠️ {{ missing_videos|length }} videos with annotations not found
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 <div id="videoList" class="video-list">
