@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Annotation Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Video Annotation Tool</h1>
+        </header>
+        
+        <div class="main-content">
+            <div class="sidebar">
+                <h2>Available Videos</h2>
+                <div id="videoList" class="video-list"></div>
+            </div>
+            
+            <div id="videoArea" class="video-area">
+                <h2 id="currentVideoTitle">Select a video</h2>
+                <video id="videoPlayer" controls></video>
+                
+                <div class="annotation-controls">
+                    <h3>Add New Annotation</h3>
+                    <div class="input-group">
+                        <label for="startTime">Start Time (seconds):</label>
+                        <input type="number" id="startTime" step="0.1" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="endTime">End Time (seconds):</label>
+                        <input type="number" id="endTime" step="0.1" min="0">
+                    </div>
+                    <button id="addAnnotation">Add Annotation</button>
+                </div>
+                
+                <div class="annotation-list">
+                    <h3>Annotations:</h3>
+                    <div id="annotationDisplay"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

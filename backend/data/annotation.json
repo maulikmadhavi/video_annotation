@@ -1,0 +1,9 @@
+{
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video1.mp4": [
+        { "start_time": 4.4, "end_time": 5.6 },
+        { "start_time": 16.1, "end_time": 17.9 }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video2.mp4": [
+        { "start_time": 10.9, "end_time": 12.1 }
+    ]
+}
