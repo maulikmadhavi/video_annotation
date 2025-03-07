@@ -1,0 +1,1284 @@
+{
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video1.mp4": [
+        {
+            "start_time": 6.5,
+            "end_time": 7.0
+        },
+        {
+            "start_time": 3.1,
+            "end_time": 3.9
+        },
+        {
+            "start_time": 6.9,
+            "end_time": 8.4
+        },
+        {
+            "start_time": 4.9,
+            "end_time": 6.3
+        },
+        {
+            "start_time": 6.4,
+            "end_time": 7.5
+        },
+        {
+            "start_time": 0.5,
+            "end_time": 1.3
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 5.4
+        },
+        {
+            "start_time": 7.2,
+            "end_time": 8.8
+        },
+        {
+            "start_time": 7.6,
+            "end_time": 8.9
+        },
+        {
+            "start_time": 8.0,
+            "end_time": 9.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video2.mp4": [
+        {
+            "start_time": 7.8,
+            "end_time": 9.3
+        },
+        {
+            "start_time": 1.0,
+            "end_time": 2.4
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 7.6
+        },
+        {
+            "start_time": 0.7,
+            "end_time": 2.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video3.mp4": [
+        {
+            "start_time": 3.4,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 8.0,
+            "end_time": 9.2
+        },
+        {
+            "start_time": 4.3,
+            "end_time": 5.0
+        },
+        {
+            "start_time": 5.6,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 3.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video4.mp4": [
+        {
+            "start_time": 1.4,
+            "end_time": 2.9
+        },
+        {
+            "start_time": 1.9,
+            "end_time": 3.5
+        },
+        {
+            "start_time": 1.1,
+            "end_time": 2.5
+        },
+        {
+            "start_time": 1.4,
+            "end_time": 3.3
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 6.2
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.5
+        },
+        {
+            "start_time": 3.2,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 7.4,
+            "end_time": 8.1
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video5.mp4": [
+        {
+            "start_time": 7.7,
+            "end_time": 9.1
+        },
+        {
+            "start_time": 7.7,
+            "end_time": 8.3
+        },
+        {
+            "start_time": 2.0,
+            "end_time": 3.3
+        },
+        {
+            "start_time": 4.6,
+            "end_time": 5.8
+        },
+        {
+            "start_time": 3.4,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 4.0,
+            "end_time": 4.8
+        },
+        {
+            "start_time": 4.7,
+            "end_time": 6.2
+        },
+        {
+            "start_time": 6.1,
+            "end_time": 6.7
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video6.mp4": [
+        {
+            "start_time": 4.1,
+            "end_time": 5.8
+        },
+        {
+            "start_time": 4.2,
+            "end_time": 6.0
+        },
+        {
+            "start_time": 5.3,
+            "end_time": 6.1
+        },
+        {
+            "start_time": 5.6,
+            "end_time": 7.0
+        },
+        {
+            "start_time": 3.0,
+            "end_time": 4.6
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 2.8
+        },
+        {
+            "start_time": 7.6,
+            "end_time": 8.9
+        },
+        {
+            "start_time": 3.8,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 3.6,
+            "end_time": 5.3
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video7.mp4": [
+        {
+            "start_time": 4.4,
+            "end_time": 5.3
+        },
+        {
+            "start_time": 5.8,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 3.1,
+            "end_time": 4.3
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 6.7
+        },
+        {
+            "start_time": 7.1,
+            "end_time": 8.6
+        },
+        {
+            "start_time": 2.0,
+            "end_time": 3.2
+        },
+        {
+            "start_time": 3.6,
+            "end_time": 5.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video8.mp4": [
+        {
+            "start_time": 1.7,
+            "end_time": 2.3
+        },
+        {
+            "start_time": 3.2,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 5.9,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 4.3,
+            "end_time": 5.7
+        },
+        {
+            "start_time": 4.5,
+            "end_time": 5.8
+        },
+        {
+            "start_time": 7.3,
+            "end_time": 8.9
+        },
+        {
+            "start_time": 1.0,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 4.0,
+            "end_time": 5.0
+        },
+        {
+            "start_time": 2.1,
+            "end_time": 3.3
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video9.mp4": [
+        {
+            "start_time": 6.7,
+            "end_time": 8.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video10.mp4": [
+        {
+            "start_time": 0.4,
+            "end_time": 1.9
+        },
+        {
+            "start_time": 3.7,
+            "end_time": 4.5
+        },
+        {
+            "start_time": 2.5,
+            "end_time": 4.5
+        },
+        {
+            "start_time": 3.9,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 7.6
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 6.4,
+            "end_time": 8.4
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 8.5
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 8.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video11.mp4": [
+        {
+            "start_time": 5.6,
+            "end_time": 6.2
+        },
+        {
+            "start_time": 1.8,
+            "end_time": 3.5
+        },
+        {
+            "start_time": 2.0,
+            "end_time": 3.2
+        },
+        {
+            "start_time": 1.6,
+            "end_time": 2.8
+        },
+        {
+            "start_time": 3.8,
+            "end_time": 4.9
+        },
+        {
+            "start_time": 4.5,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 6.3,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 7.4
+        },
+        {
+            "start_time": 1.3,
+            "end_time": 3.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video12.mp4": [
+        {
+            "start_time": 6.8,
+            "end_time": 7.4
+        },
+        {
+            "start_time": 7.0,
+            "end_time": 9.0
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 1.9,
+            "end_time": 3.8
+        },
+        {
+            "start_time": 2.6,
+            "end_time": 4.4
+        },
+        {
+            "start_time": 0.9,
+            "end_time": 2.7
+        },
+        {
+            "start_time": 5.6,
+            "end_time": 7.5
+        },
+        {
+            "start_time": 6.1,
+            "end_time": 7.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video13.mp4": [
+        {
+            "start_time": 6.2,
+            "end_time": 6.8
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 7.4
+        },
+        {
+            "start_time": 1.3,
+            "end_time": 1.8
+        },
+        {
+            "start_time": 1.2,
+            "end_time": 1.8
+        },
+        {
+            "start_time": 5.6,
+            "end_time": 7.6
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 8.3
+        },
+        {
+            "start_time": 1.9,
+            "end_time": 3.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video14.mp4": [
+        {
+            "start_time": 4.0,
+            "end_time": 5.5
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 4.6
+        },
+        {
+            "start_time": 0.1,
+            "end_time": 0.9
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video15.mp4": [
+        {
+            "start_time": 3.5,
+            "end_time": 4.5
+        },
+        {
+            "start_time": 6.6,
+            "end_time": 8.3
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.9
+        },
+        {
+            "start_time": 5.0,
+            "end_time": 6.5
+        },
+        {
+            "start_time": 7.1,
+            "end_time": 9.1
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video16.mp4": [
+        {
+            "start_time": 1.5,
+            "end_time": 3.4
+        },
+        {
+            "start_time": 4.9,
+            "end_time": 5.5
+        },
+        {
+            "start_time": 0.9,
+            "end_time": 2.1
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 3.4
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video17.mp4": [
+        {
+            "start_time": 2.7,
+            "end_time": 4.0
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.4
+        },
+        {
+            "start_time": 5.5,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 1.8,
+            "end_time": 3.0
+        },
+        {
+            "start_time": 3.3,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 1.2,
+            "end_time": 2.5
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 2.8
+        },
+        {
+            "start_time": 1.7,
+            "end_time": 2.7
+        },
+        {
+            "start_time": 7.6,
+            "end_time": 9.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video18.mp4": [
+        {
+            "start_time": 5.0,
+            "end_time": 6.7
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 5.3,
+            "end_time": 6.4
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video19.mp4": [
+        {
+            "start_time": 3.4,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 5.7
+        },
+        {
+            "start_time": 2.4,
+            "end_time": 3.8
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 9.4
+        },
+        {
+            "start_time": 4.2,
+            "end_time": 5.7
+        },
+        {
+            "start_time": 6.5,
+            "end_time": 7.5
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 3.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video20.mp4": [
+        {
+            "start_time": 2.9,
+            "end_time": 4.5
+        },
+        {
+            "start_time": 1.8,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 0.8,
+            "end_time": 2.6
+        },
+        {
+            "start_time": 2.6,
+            "end_time": 3.3
+        },
+        {
+            "start_time": 3.2,
+            "end_time": 3.8
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video21.mp4": [
+        {
+            "start_time": 2.9,
+            "end_time": 3.6
+        },
+        {
+            "start_time": 0.9,
+            "end_time": 2.6
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 4.8
+        },
+        {
+            "start_time": 0.1,
+            "end_time": 0.9
+        },
+        {
+            "start_time": 2.2,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 6.7
+        },
+        {
+            "start_time": 3.9,
+            "end_time": 4.7
+        },
+        {
+            "start_time": 3.3,
+            "end_time": 4.9
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video22.mp4": [
+        {
+            "start_time": 2.7,
+            "end_time": 3.6
+        },
+        {
+            "start_time": 2.2,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 5.3,
+            "end_time": 7.3
+        },
+        {
+            "start_time": 5.6,
+            "end_time": 6.3
+        },
+        {
+            "start_time": 6.5,
+            "end_time": 8.2
+        },
+        {
+            "start_time": 3.4,
+            "end_time": 5.0
+        },
+        {
+            "start_time": 1.0,
+            "end_time": 2.1
+        },
+        {
+            "start_time": 6.5,
+            "end_time": 8.1
+        },
+        {
+            "start_time": 5.0,
+            "end_time": 6.1
+        },
+        {
+            "start_time": 3.6,
+            "end_time": 5.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video23.mp4": [
+        {
+            "start_time": 2.5,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 2.1
+        },
+        {
+            "start_time": 2.3,
+            "end_time": 2.9
+        },
+        {
+            "start_time": 5.3,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 2.7,
+            "end_time": 4.3
+        },
+        {
+            "start_time": 2.6,
+            "end_time": 3.8
+        },
+        {
+            "start_time": 3.3,
+            "end_time": 5.3
+        },
+        {
+            "start_time": 7.4,
+            "end_time": 8.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video24.mp4": [
+        {
+            "start_time": 5.4,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 8.9
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 1.1,
+            "end_time": 2.9
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 6.3
+        },
+        {
+            "start_time": 3.8,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 8.5
+        },
+        {
+            "start_time": 7.9,
+            "end_time": 8.7
+        },
+        {
+            "start_time": 3.0,
+            "end_time": 4.3
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video25.mp4": [
+        {
+            "start_time": 2.8,
+            "end_time": 4.0
+        },
+        {
+            "start_time": 1.2,
+            "end_time": 1.9
+        },
+        {
+            "start_time": 7.9,
+            "end_time": 9.4
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 4.4
+        },
+        {
+            "start_time": 4.8,
+            "end_time": 5.8
+        },
+        {
+            "start_time": 6.9,
+            "end_time": 8.2
+        },
+        {
+            "start_time": 3.0,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 6.0,
+            "end_time": 7.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video26.mp4": [
+        {
+            "start_time": 5.5,
+            "end_time": 7.3
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 9.2
+        },
+        {
+            "start_time": 4.8,
+            "end_time": 5.6
+        },
+        {
+            "start_time": 0.9,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 3.8,
+            "end_time": 5.4
+        },
+        {
+            "start_time": 7.9,
+            "end_time": 9.7
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video27.mp4": [
+        {
+            "start_time": 2.6,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 4.3,
+            "end_time": 5.4
+        },
+        {
+            "start_time": 3.9,
+            "end_time": 5.0
+        },
+        {
+            "start_time": 5.0,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 0.4,
+            "end_time": 1.0
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 9.7
+        },
+        {
+            "start_time": 7.7,
+            "end_time": 8.8
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.5
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 7.6,
+            "end_time": 8.7
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video28.mp4": [
+        {
+            "start_time": 1.3,
+            "end_time": 2.4
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 0.2,
+            "end_time": 2.0
+        },
+        {
+            "start_time": 2.3,
+            "end_time": 3.9
+        },
+        {
+            "start_time": 1.6,
+            "end_time": 3.1
+        },
+        {
+            "start_time": 5.1,
+            "end_time": 7.0
+        },
+        {
+            "start_time": 3.0,
+            "end_time": 3.5
+        },
+        {
+            "start_time": 5.3,
+            "end_time": 6.7
+        },
+        {
+            "start_time": 0.6,
+            "end_time": 1.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video29.mp4": [
+        {
+            "start_time": 0.7,
+            "end_time": 2.5
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 3.1
+        },
+        {
+            "start_time": 1.5,
+            "end_time": 2.9
+        },
+        {
+            "start_time": 0.4,
+            "end_time": 2.4
+        },
+        {
+            "start_time": 5.5,
+            "end_time": 6.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video30.mp4": [
+        {
+            "start_time": 0.3,
+            "end_time": 1.0
+        },
+        {
+            "start_time": 0.8,
+            "end_time": 1.5
+        },
+        {
+            "start_time": 6.4,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 5.0
+        },
+        {
+            "start_time": 0.0,
+            "end_time": 0.9
+        },
+        {
+            "start_time": 7.7,
+            "end_time": 9.3
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 8.7
+        },
+        {
+            "start_time": 6.2,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 3.3,
+            "end_time": 4.2
+        },
+        {
+            "start_time": 3.7,
+            "end_time": 5.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video31.mp4": [
+        {
+            "start_time": 2.3,
+            "end_time": 3.9
+        },
+        {
+            "start_time": 5.4,
+            "end_time": 6.3
+        },
+        {
+            "start_time": 0.7,
+            "end_time": 2.5
+        },
+        {
+            "start_time": 1.1,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 0.8,
+            "end_time": 1.8
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video32.mp4": [
+        {
+            "start_time": 2.2,
+            "end_time": 2.8
+        },
+        {
+            "start_time": 0.1,
+            "end_time": 1.1
+        },
+        {
+            "start_time": 5.2,
+            "end_time": 6.1
+        },
+        {
+            "start_time": 3.9,
+            "end_time": 5.3
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 4.0
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 8.5
+        },
+        {
+            "start_time": 7.4,
+            "end_time": 9.2
+        },
+        {
+            "start_time": 1.6,
+            "end_time": 3.4
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 8.1
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/video33.mp4": [
+        {
+            "start_time": 2.3,
+            "end_time": 3.3
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_gryiab1g.mp4": [
+        {
+            "start_time": 3.4,
+            "end_time": 5.1
+        },
+        {
+            "start_time": 2.8,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 3.8,
+            "end_time": 5.2
+        },
+        {
+            "start_time": 6.9,
+            "end_time": 8.1
+        },
+        {
+            "start_time": 0.4,
+            "end_time": 1.8
+        },
+        {
+            "start_time": 0.3,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 1.8,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 7.9,
+            "end_time": 9.7
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_c7omy327.mp4": [
+        {
+            "start_time": 3.7,
+            "end_time": 5.5
+        },
+        {
+            "start_time": 0.1,
+            "end_time": 1.0
+        },
+        {
+            "start_time": 7.3,
+            "end_time": 8.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_r7ue4jb0.mp4": [
+        {
+            "start_time": 0.7,
+            "end_time": 2.5
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 8.8
+        },
+        {
+            "start_time": 4.9,
+            "end_time": 6.4
+        },
+        {
+            "start_time": 0.8,
+            "end_time": 2.6
+        },
+        {
+            "start_time": 4.7,
+            "end_time": 5.7
+        },
+        {
+            "start_time": 7.4,
+            "end_time": 9.1
+        },
+        {
+            "start_time": 1.9,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 2.9,
+            "end_time": 4.8
+        },
+        {
+            "start_time": 2.4,
+            "end_time": 3.5
+        },
+        {
+            "start_time": 1.3,
+            "end_time": 2.0
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_qecerrtb.mp4": [
+        {
+            "start_time": 5.6,
+            "end_time": 6.7
+        },
+        {
+            "start_time": 0.9,
+            "end_time": 2.4
+        },
+        {
+            "start_time": 6.5,
+            "end_time": 7.2
+        },
+        {
+            "start_time": 7.8,
+            "end_time": 9.4
+        },
+        {
+            "start_time": 7.1,
+            "end_time": 8.7
+        },
+        {
+            "start_time": 0.8,
+            "end_time": 1.9
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_3rlksuxh.mp4": [
+        {
+            "start_time": 0.2,
+            "end_time": 1.9
+        },
+        {
+            "start_time": 1.7,
+            "end_time": 3.3
+        },
+        {
+            "start_time": 5.8,
+            "end_time": 7.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_rvcqk4zm.mp4": [
+        {
+            "start_time": 3.2,
+            "end_time": 4.0
+        },
+        {
+            "start_time": 2.7,
+            "end_time": 4.1
+        },
+        {
+            "start_time": 7.7,
+            "end_time": 8.8
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_kqretbq6.mp4": [
+        {
+            "start_time": 0.3,
+            "end_time": 1.3
+        },
+        {
+            "start_time": 7.3,
+            "end_time": 9.1
+        },
+        {
+            "start_time": 4.7,
+            "end_time": 6.2
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 4.3,
+            "end_time": 5.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_yf8hb7jz.mp4": [
+        {
+            "start_time": 2.9,
+            "end_time": 3.8
+        },
+        {
+            "start_time": 2.1,
+            "end_time": 3.7
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 8.3
+        },
+        {
+            "start_time": 5.2,
+            "end_time": 6.3
+        },
+        {
+            "start_time": 2.0,
+            "end_time": 2.6
+        },
+        {
+            "start_time": 4.1,
+            "end_time": 5.9
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 9.4
+        },
+        {
+            "start_time": 3.5,
+            "end_time": 5.4
+        },
+        {
+            "start_time": 6.1,
+            "end_time": 6.9
+        },
+        {
+            "start_time": 4.4,
+            "end_time": 4.9
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_2mxbcykp.mp4": [
+        {
+            "start_time": 4.0,
+            "end_time": 5.2
+        },
+        {
+            "start_time": 1.1,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 7.0,
+            "end_time": 7.6
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_6f0qzjzh.mp4": [
+        {
+            "start_time": 6.4,
+            "end_time": 7.7
+        },
+        {
+            "start_time": 5.7,
+            "end_time": 6.8
+        },
+        {
+            "start_time": 6.3,
+            "end_time": 8.0
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.7
+        },
+        {
+            "start_time": 2.9,
+            "end_time": 4.2
+        },
+        {
+            "start_time": 6.6,
+            "end_time": 7.6
+        },
+        {
+            "start_time": 5.8,
+            "end_time": 7.1
+        },
+        {
+            "start_time": 0.5,
+            "end_time": 1.2
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 8.3
+        },
+        {
+            "start_time": 5.4,
+            "end_time": 7.2
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_hbjcti57.mp4": [
+        {
+            "start_time": 1.2,
+            "end_time": 2.2
+        },
+        {
+            "start_time": 3.4,
+            "end_time": 4.5
+        },
+        {
+            "start_time": 1.8,
+            "end_time": 3.0
+        },
+        {
+            "start_time": 4.9,
+            "end_time": 5.8
+        },
+        {
+            "start_time": 2.6,
+            "end_time": 3.2
+        },
+        {
+            "start_time": 0.2,
+            "end_time": 1.9
+        },
+        {
+            "start_time": 6.8,
+            "end_time": 7.9
+        },
+        {
+            "start_time": 7.5,
+            "end_time": 9.5
+        }
+    ],
+    "/home/maulik/Documents/Tool/video_annotation_tool/videos/vid_oxfipekr.mp4": [
+        {
+            "start_time": 7.2,
+            "end_time": 8.4
+        }
+    ]
+}

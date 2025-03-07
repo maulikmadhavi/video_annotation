@@ -31,6 +31,12 @@
                             {% if current_video %}
                             <input type="hidden" name="video" value="{{ current_video.encoded_path }}">
                             {% endif %}
+                            
+                            <div class="search-box">
+                                <input type="text" name="search" placeholder="Search videos..." value="{{ search_query }}">
+                                <button type="submit" class="search-btn">Search</button>
+                            </div>
+                            
                             <div class="filter-title">Filter Videos:</div>
                             <div class="filter-options">
                                 <label class="filter-option">
@@ -39,19 +45,28 @@
                                 </label>
                                 <label class="filter-option">
                                     <input type="radio" name="filter" value="annotated" {% if filter_mode == 'annotated' %}checked{% endif %} onchange="this.form.submit()">
-                                    <span>Annotated Only</span>
+                                    <span>Annotated Only ({{ annotated_count }})</span>
                                 </label>
                                 <label class="filter-option">
                                     <input type="radio" name="filter" value="not_annotated" {% if filter_mode == 'not_annotated' %}checked{% endif %} onchange="this.form.submit()">
-                                    <span>Not Annotated</span>
+                                    <span>Not Annotated ({{ not_annotated_count }})</span>
                                 </label>
                             </div>
                         </form>
-                        <div class="video-count">
-                            Showing {{ displayed_videos }} of {{ total_videos }} videos
-                        </div>
-                        <div class="annotation-stats">
-                            Total annotations: {{ total_annotations }}
+                        
+                        <div class="video-summary">
+                            <div class="video-count">
+                                Showing {{ displayed_videos }} of {{ total_videos }} videos
+                            </div>
+                            <div class="annotation-stats">
+                                Total annotations: {{ total_annotations }}
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: {{ (annotated_count / total_videos * 100) if total_videos > 0 else 0 }}%"></div>
+                            </div>
+                            <div class="progress-text">
+                                {{ annotated_count }} of {{ total_videos }} videos annotated ({{ "%.1f"|format(annotated_count / total_videos * 100) if total_videos > 0 else 0 }}%)
+                            </div>
                         </div>
                         
                         {% if annotation_issues %}
@@ -74,6 +89,15 @@
                         {% endif %}
                     </div>
                 </div>
+                
+                <div class="video-list-header">
+                    {% if videos %}
+                        <div class="pagination-info">
+                            Page {{ current_page }} of {{ total_pages }}
+                        </div>
+                    {% endif %}
+                </div>
+                
                 <div id="videoList" class="video-list">
                     {% if videos %}
                         {% for video in videos %}
@@ -86,6 +110,25 @@
                                 </button>
                             </form>
                         {% endfor %}
+                        
+                        <!-- Pagination controls -->
+                        <div class="pagination">
+                            {% if total_pages > 1 %}
+                                {% if current_page > 1 %}
+                                    <a href="{{ url_for('index', page=current_page-1, filter=filter_mode, search=search_query, video=current_video.encoded_path if current_video else None) }}" class="page-btn">&laquo; Prev</a>
+                                {% else %}
+                                    <span class="page-btn disabled">&laquo; Prev</span>
+                                {% endif %}
+                                
+                                <span class="page-info">{{ current_page }} / {{ total_pages }}</span>
+                                
+                                {% if current_page < total_pages %}
+                                    <a href="{{ url_for('index', page=current_page+1, filter=filter_mode, search=search_query, video=current_video.encoded_path if current_video else None) }}" class="page-btn">Next &raquo;</a>
+                                {% else %}
+                                    <span class="page-btn disabled">Next &raquo;</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
                     {% else %}
                         <p class="no-videos">No videos found matching your filter criteria.</p>
                     {% endif %}

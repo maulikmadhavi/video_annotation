@@ -57,8 +57,10 @@ header {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: 500px;
+    max-height: 600px;
     overflow-y: auto;
+    padding-right: 5px;
+    border-radius: 0 0 5px 5px;
 }
 
 .video-controls {
@@ -344,6 +346,104 @@ h2, h3 {
     padding-bottom: 10px;
 }
 
+.search-box {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    background-color: #007bff;
+}
+
+.search-btn:hover {
+    background-color: #0069d9;
+}
+
+.video-summary {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #28a745;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.9em;
+    color: #6c757d;
+    text-align: center;
+}
+
+.video-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 5px;
+}
+
+.pagination-info {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    gap: 10px;
+}
+
+.page-btn {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.page-btn:hover {
+    background-color: #0069d9;
+}
+
+.page-btn.disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.page-info {
+    font-size: 0.9em;
+    color: #6c757d;
+}
+
 @media (max-width: 768px) {
     .main-content {
         flex-direction: column;
@@ -355,5 +455,21 @@ h2, h3 {
     
     .video-list {
         max-height: 300px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+    }
+    
+    .pagination {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* For very large collections */
+@media (min-height: 900px) {
+    .video-list {
+        max-height: 700px;
     }
 }

@@ -1,1 +1,5 @@
 flask==2.0.1
+# Optional dependencies for benchmark tool
+# The benchmark tool uses ffmpeg, which is a system dependency
+# and should be installed separately using your system's package manager
+# e.g., apt-get install ffmpeg (Ubuntu/Debian) or brew install ffmpeg (macOS)

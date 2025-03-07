@@ -159,8 +159,11 @@ def index():
         print(f"Video path: {video_path}")
         print(f"Has annotations: {video_path in norm_annotation_data}")
 
-    videos = []
+    # Get filter parameters
     filter_mode = request.args.get("filter", "all")  # Default to showing all videos
+    search_query = request.args.get("search", "").lower()
+    page = int(request.args.get("page", 1))
+    per_page = int(request.args.get("per_page", 50))  # Show 50 videos per page
 
     # Track paths that appear in annotations but not in video directory
     missing_videos = []
@@ -178,18 +181,23 @@ def index():
                 )
 
     # Process all videos and their annotation status
+    filtered_videos = []
     for video_path in all_video_paths:
         annotations = norm_annotation_data.get(video_path, [])
         is_annotated = len(annotations) > 0
 
-        # Apply filtering
+        # Apply filtering by annotation status
         if (filter_mode == "annotated" and not is_annotated) or (
             filter_mode == "not_annotated" and is_annotated
         ):
             continue
 
+        # Apply search filtering
         video_name = os.path.basename(video_path)
-        videos.append(
+        if search_query and search_query not in video_name.lower():
+            continue
+
+        filtered_videos.append(
             {
                 "path": video_path,
                 "name": video_name,
@@ -199,11 +207,20 @@ def index():
         )
 
     # Sort videos: annotated videos first, then by name
-    videos.sort(key=lambda x: (not x["is_annotated"], x["name"].lower()))
+    filtered_videos.sort(key=lambda x: (not x["is_annotated"], x["name"].lower()))
+
+    # Calculate pagination
+    total_pages = (len(filtered_videos) + per_page - 1) // per_page
+    page = min(max(page, 1), total_pages if total_pages > 0 else 1)
+    start_idx = (page - 1) * per_page
+    end_idx = start_idx + per_page
+    paginated_videos = filtered_videos[start_idx:end_idx]
 
     # Calculate some stats for display
     total_annotations = sum(len(anns) for anns in norm_annotation_data.values())
     annotation_issues = len(annotation_data) != len(norm_annotation_data)
+    annotated_count = sum(1 for v in filtered_videos if v["is_annotated"])
+    not_annotated_count = len(filtered_videos) - annotated_count
 
     # Get the currently selected video, if any
     selected_video = request.args.get("video")
@@ -228,15 +245,21 @@ def index():
 
     return render_template(
         "index.html",
-        videos=videos,
+        videos=paginated_videos,
         current_video=current_video,
         annotations=annotations,
         filter_mode=filter_mode,
+        search_query=search_query,
         total_videos=len(all_video_paths),
-        displayed_videos=len(videos),
+        displayed_videos=len(filtered_videos),
+        current_page=page,
+        total_pages=total_pages,
+        per_page=per_page,
         total_annotations=total_annotations,
         annotation_issues=annotation_issues,
         missing_videos=missing_videos,
+        annotated_count=annotated_count,
+        not_annotated_count=not_annotated_count,
     )
 
 
@@ -244,11 +267,17 @@ def index():
 def filter_videos():
     """Handle video filtering"""
     filter_mode = request.form.get("filter", "all")
+    search_query = request.form.get("search", "")
+
     # Preserve the currently selected video if any
     selected_video = request.args.get("video")
     if selected_video:
-        return redirect(url_for("index", filter=filter_mode, video=selected_video))
-    return redirect(url_for("index", filter=filter_mode))
+        return redirect(
+            url_for(
+                "index", filter=filter_mode, search=search_query, video=selected_video
+            )
+        )
+    return redirect(url_for("index", filter=filter_mode, search=search_query))
 
 
 @app.route("/select_video", methods=["POST"])
