@@ -48,9 +48,42 @@ header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.video-container {
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #000; /* Add background color to container */
+}
+
 #videoPlayer {
     width: 100%;
-    margin-bottom: 20px;
+    display: block;
+    margin-bottom: 0; /* Remove margin since container handles spacing */
+}
+
+.timeline-markers {
+    position: absolute;
+    bottom: 30px; /* Adjust based on your video player controls */
+    left: 0;
+    right: 0;
+    height: 8px; /* Make markers taller for better visibility */
+    pointer-events: none;
+    z-index: 10; /* Make sure it's above the video controls */
+}
+
+.timeline-marker {
+    position: absolute;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.7); /* Make red more opaque */
+    border: 1px solid #ff0000;
+    pointer-events: auto;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    z-index: 20; /* Ensure markers are clickable */
+}
+
+.timeline-marker:hover {
+    background-color: #ff0000; /* Solid red on hover */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
 }
 
 .video-list {

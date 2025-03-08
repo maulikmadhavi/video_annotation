@@ -145,28 +145,121 @@
                 </h2>
                 
                 {% if current_video %}
-                    <video id="videoPlayer" controls>
-                        <source src="/videos/{{ current_video.path.split('/videos/')[-1] }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                    <div class="video-container">
+                        <video id="videoPlayer" controls>
+                            <source src="/videos/{{ current_video.path.split('/videos/')[-1] }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div id="timelineMarkers" class="timeline-markers"></div>
+                    </div>
                     
                     <!-- Jump to time if specified in URL -->
                     {% if request.args.get('jump_to') %}
-                        <div class="jump-notification">
-                            Jumping to {{ request.args.get('jump_to') }}s
-                        </div>
-                        <script>
-                            // This minimal script just handles jumping to timestamps
-                            window.onload = function() {
-                                var video = document.getElementById('videoPlayer');
-                                var jumpTime = {{ request.args.get('jump_to', 0) }};
-                                if (video && jumpTime > 0) {
-                                    video.currentTime = jumpTime;
-                                    video.play();
-                                }
-                            }
-                        </script>
+                        <!-- ...existing code for jump notification... -->
                     {% endif %}
+                    
+                    <script>
+                        // Consolidated script that runs in all cases, not just on jump
+                        window.onload = function() {
+                            // Handle jump to time if specified
+                            var video = document.getElementById('videoPlayer');
+                            var jumpTime = {{ request.args.get('jump_to', 0) }};
+                            if (video && jumpTime > 0) {
+                                video.currentTime = jumpTime;
+                                video.play();
+                            }
+                            
+                            // Always create timeline markers
+                            createTimelineMarkers();
+                        }
+                        
+                        function createTimelineMarkers() {
+                            console.log("Creating timeline markers...");
+                            var video = document.getElementById('videoPlayer');
+                            var markersContainer = document.getElementById('timelineMarkers');
+                            
+                            if (!video || !markersContainer) {
+                                console.error("Video or markers container not found");
+                                return;
+                            }
+                            
+                            // Clear existing markers
+                            markersContainer.innerHTML = '';
+                            console.log("Cleared existing markers");
+                            
+                            // Get video element dimensions
+                            var videoWidth = video.offsetWidth;
+                            var videoHeight = video.offsetHeight;
+                            
+                            // Set markers container dimensions to match video
+                            markersContainer.style.width = videoWidth + 'px';
+                            console.log("Set markers container width to " + videoWidth + "px");
+                            
+                            // Define annotations array
+                            var annotations = [
+                                {% for annotation in annotations %}
+                                    {
+                                        start: {{ annotation.start_time }},
+                                        end: {{ annotation.end_time }}
+                                    },
+                                {% endfor %}
+                            ];
+                            
+                            console.log("Found " + annotations.length + " annotations to display");
+                            
+                            // Function to position markers with video duration
+                            function positionMarkers(duration) {
+                                if (!duration || isNaN(duration) || duration <= 0) {
+                                    console.error("Invalid video duration: " + duration);
+                                    return;
+                                }
+                                
+                                console.log("Video duration: " + duration + " seconds");
+                                
+                                annotations.forEach(function(annotation, index) {
+                                    var startPercent = (annotation.start / duration) * 100;
+                                    var endPercent = (annotation.end / duration) * 100;
+                                    var width = endPercent - startPercent;
+                                    
+                                    console.log("Marker " + index + ": " + startPercent + "% to " + endPercent + "% (width: " + width + "%)");
+                                    
+                                    var marker = document.createElement('div');
+                                    marker.className = 'timeline-marker';
+                                    marker.style.left = startPercent + '%';
+                                    marker.style.width = width + '%';
+                                    marker.title = 'Segment ' + (index + 1) + ': ' + 
+                                                annotation.start + 's - ' + annotation.end + 's';
+                                    
+                                    // Add click handler to jump to this annotation
+                                    marker.addEventListener('click', function() {
+                                        video.currentTime = annotation.start;
+                                        video.play();
+                                    });
+                                    
+                                    markersContainer.appendChild(marker);
+                                });
+                                
+                                console.log("Markers created and positioned");
+                            }
+                            
+                            // Position markers once video metadata is loaded
+                            if (video.readyState >= 1) { // HAVE_METADATA or higher
+                                console.log("Video metadata already available");
+                                positionMarkers(video.duration);
+                            } else {
+                                console.log("Waiting for video metadata to load...");
+                                video.addEventListener('loadedmetadata', function() {
+                                    positionMarkers(video.duration);
+                                });
+                            }
+                            
+                            // Also update on resize
+                            window.addEventListener('resize', function() {
+                                markersContainer.style.width = video.offsetWidth + 'px';
+                                console.log("Resized markers container to " + video.offsetWidth + "px");
+                            });
+                        }
+                    </script>
                     
                     <div class="annotation-controls">
                         <h3>Add New Annotation</h3>
